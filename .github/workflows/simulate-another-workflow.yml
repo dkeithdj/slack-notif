@@ -1,0 +1,74 @@
+name: Build and Push Outputs to Demo Repo
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+
+      - name: Post a message in a channel
+        id: deployment_message
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_TOKEN }}
+          payload: |
+            channel: C082SRACXL5
+            text: "Deployment started :eyes:"
+                  attachments:
+                    - color: "dbab09"
+                      fields:
+                        - title: "Status"
+                          short: true
+                          value: "In Progress"
+      # Install dependencies (Modify this to your project)
+      - name: Simulate process
+        run: |
+          sleep 10
+          exit 0
+
+      - name: Success message
+        if: ${{ success() }}
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_TOKEN }}
+          payload: |
+            channel: C082SRACXL5
+            thread_ts: "${{ steps.deployment_message.outputs.ts }}"
+            text: "Deployment finished! :rocket:"
+                  attachments:
+                    - color: "28a745"
+                      fields:
+                        - title: "Status"
+                          short: true
+                          value: "Completed"
+      - name: fail message
+        if: ${{ failure() }}
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_TOKEN }}
+          payload: |
+            channel: C082SRACXL5
+            thread_ts: "${{ steps.deployment_message.outputs.ts }}"
+            text: "oops it failed..."
+
+      - name: after fail message
+        if: ${{ failure() }}
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_TOKEN }}
+          payload: |
+            channel: C082SRACXL5
+            thread_ts: "${{ steps.deployment_message.outputs.ts }}"
+            text: "will not proceed to another build on ${{ github.sha }} and ${{ github.ref }}"
