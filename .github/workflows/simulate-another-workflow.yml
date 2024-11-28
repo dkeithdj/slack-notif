@@ -23,12 +23,12 @@ jobs:
           payload: |
             channel: C082SRACXL5
             text: "Deployment started :eyes:"
-                  attachments:
-                    - color: "dbab09"
-                      fields:
-                        - title: "Status"
-                          short: true
-                          value: "In Progress"
+            attachments:
+              - color: "dbab09"
+                fields:
+                  - title: "Status"
+                    short: true
+                    value: "In Progress"
       # Install dependencies (Modify this to your project)
       - name: Simulate process
         run: |
@@ -45,12 +45,12 @@ jobs:
             channel: C082SRACXL5
             thread_ts: "${{ steps.deployment_message.outputs.ts }}"
             text: "Deployment finished! :rocket:"
-                  attachments:
-                    - color: "28a745"
-                      fields:
-                        - title: "Status"
-                          short: true
-                          value: "Completed"
+            attachments:
+              - color: "28a745"
+                fields:
+                  - title: "Status"
+                    short: true
+                    value: "Completed"
       - name: fail message
         if: ${{ failure() }}
         uses: slackapi/slack-github-action@v2.0.0
