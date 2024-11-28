@@ -57,4 +57,4 @@ jobs:
           payload: |
             channel: C082SRACXL5
             thread_ts: "${{ steps.deployment_message.outputs.ts }}"
-            text: "will not proceed to another build"
+            text: "will not proceed to another build on ${{ github.sha }} ${{ github.head_ref }}"
