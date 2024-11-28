@@ -28,14 +28,12 @@ jobs:
                 fields:
                   - title: "Status"
                     short: true
-                    value: [
-
-            ]
+                    value: In Progress
       # Install dependencies (Modify this to your project)
       - name: Simulate process
         run: |
           sleep 10
-          exit 1
+          exit 0
 
       - name: Success message
         if: ${{ success() }}
