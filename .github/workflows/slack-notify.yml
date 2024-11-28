@@ -22,25 +22,7 @@ jobs:
           token: ${{ secrets.SLACK_TOKEN }}
           payload: |
             channel: C082SRACXL5
-            {
-              "text": "GitHub Action Report",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "Building..."
-                  }
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-                  }
-                },
-              ]
-            }
+            text: "building..."
       # Install dependencies (Modify this to your project)
       - name: Simulate process
         run: exit 0
@@ -53,22 +35,4 @@ jobs:
           payload: |
             channel: C082SRACXL5
             thread_ts: "${{ steps.deployment_message.outputs.ts }}"
-            {
-              "text": "GitHub Action Report",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "This is a reply to the previous message"
-                  }
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-                  }
-                },
-              ]
-            }
+            text: "success..."
