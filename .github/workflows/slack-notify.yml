@@ -43,7 +43,7 @@ jobs:
           token: ${{ secrets.SLACK_TOKEN }}
           payload: |
             channel: C082SRACXL5
-            thread_ts: "${{ steps.deployment_message.outputs.ts }}"
+            ts: "${{ steps.deployment_message.outputs.ts }}"
             text: "Deployment finished! :rocket:"
             attachments:
               - color: "28a745"
