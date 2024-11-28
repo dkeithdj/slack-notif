@@ -33,7 +33,7 @@ jobs:
       - name: Simulate process
         run: |
           sleep 10
-          exit 0
+          exit 1
 
       - name: Success message
         if: ${{ success() }}
@@ -55,12 +55,18 @@ jobs:
         if: ${{ failure() }}
         uses: slackapi/slack-github-action@v2.0.0
         with:
-          method: chat.postMessage
+          method: chat.update
           token: ${{ secrets.SLACK_TOKEN }}
           payload: |
             channel: C082SRACXL5
-            thread_ts: "${{ steps.deployment_message.outputs.ts }}"
-            text: "oops it failed..."
+            ts: "${{ steps.deployment_message.outputs.ts }}"
+            text: "Deployment failed! :red_circle:"
+            attachments:
+              - color: "f44336"
+                fields:
+                  - title: "Status"
+                    short: true
+                    value: "Failed"
 
       # - name: after fail message
       #   if: ${{ failure() }}
