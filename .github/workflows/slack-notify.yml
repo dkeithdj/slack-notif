@@ -24,11 +24,13 @@ jobs:
             channel: C082SRACXL5
             text: "Deployment started :eyes:"
             attachments:
-              - color: "dbab09"
+              - color: "#dbab09"
                 fields:
                   - title: "Status"
                     short: true
-                    value: "In Progress"
+                    value: [
+
+            ]
       # Install dependencies (Modify this to your project)
       - name: Simulate process
         run: |
@@ -46,11 +48,41 @@ jobs:
             ts: "${{ steps.deployment_message.outputs.ts }}"
             text: "Deployment finished! :rocket:"
             attachments:
-              - color: "28a745"
-                fields:
-                  - title: "Status"
-                    short: true
-                    value: "Completed"
+              [
+                  {
+                      "mrkdwn_in": ["text"],
+                      "color": "#36a64f",
+                      "pretext": "Optional pre-text that appears above the attachment block",
+                      "author_name": "author_name",
+                      "author_link": "http://flickr.com/bobby/",
+                      "author_icon": "https://placeimg.com/16/16/people",
+                      "title": "title",
+                      "title_link": "https://api.slack.com/",
+                      "text": "Optional `text` that appears within the attachment",
+                      "fields": 
+                      [
+                          {
+                              "title": "A field's title",
+                              "value": "This field's value",
+                              "short": false
+                          },
+                          {
+                              "title": "A short field's title",
+                              "value": "A short field's value",
+                              "short": true
+                          },
+                          {
+                              "title": "A second short field's title",
+                              "value": "A second short field's value",
+                              "short": true
+                          }
+                      ],
+                      "thumb_url": "http://placekitten.com/g/200/200",
+                      "footer": "footer",
+                      "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
+                      "ts": 123456789
+                  }
+              ]
       - name: fail message
         if: ${{ failure() }}
         uses: slackapi/slack-github-action@v2.0.0
@@ -62,7 +94,7 @@ jobs:
             ts: "${{ steps.deployment_message.outputs.ts }}"
             text: "Deployment failed! :red_circle:"
             attachments:
-              - color: "f44336"
+              - color: "#f44336"
                 fields:
                   - title: "Status"
                     short: true
