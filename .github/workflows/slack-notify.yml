@@ -25,7 +25,7 @@ jobs:
             text: "building..."
       # Install dependencies (Modify this to your project)
       - name: Simulate process
-        run: exit 0
+        run: exit 1
 
       - name: Success message
         if: ${{ success() }}
@@ -46,4 +46,4 @@ jobs:
           payload: |
             channel: C082SRACXL5
             thread_ts: "${{ steps.deployment_message.outputs.ts }}"
-            text: "success..."
+            text: "oops it failed..."
