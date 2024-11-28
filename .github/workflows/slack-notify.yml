@@ -54,7 +54,7 @@ jobs:
                       "author_icon": "https://avatars.githubusercontent.com/${{github.actor}}",
                       "title": "PR#${{ github.event.number }} ${{ github.event.head_commit.message }}",
                       "title_link": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
-                      "text": "Action: [${{github.run_id}}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})",
+                      "text": "Action: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>",
                       "fields": 
                       [
                           {
