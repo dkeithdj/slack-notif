@@ -3,7 +3,6 @@ name: Build and Push Outputs to Demo Repo
 on:
   push:
     branches:
-      - main
       - develop
 
 jobs:
