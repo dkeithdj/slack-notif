@@ -39,7 +39,7 @@ jobs:
         if: ${{ success() }}
         uses: slackapi/slack-github-action@v2.0.0
         with:
-          method: chat.postMessage
+          method: chat.update
           token: ${{ secrets.SLACK_TOKEN }}
           payload: |
             channel: C082SRACXL5
@@ -62,13 +62,13 @@ jobs:
             thread_ts: "${{ steps.deployment_message.outputs.ts }}"
             text: "oops it failed..."
 
-      - name: after fail message
-        if: ${{ failure() }}
-        uses: slackapi/slack-github-action@v2.0.0
-        with:
-          method: chat.postMessage
-          token: ${{ secrets.SLACK_TOKEN }}
-          payload: |
-            channel: C082SRACXL5
-            thread_ts: "${{ steps.deployment_message.outputs.ts }}"
-            text: "will not proceed to another build on ${{ github.sha }} and ${{ github.ref }}"
+      # - name: after fail message
+      #   if: ${{ failure() }}
+      #   uses: slackapi/slack-github-action@v2.0.0
+      #   with:
+      #     method: chat.postMessage
+      #     token: ${{ secrets.SLACK_TOKEN }}
+      #     payload: |
+      #       channel: C082SRACXL5
+      #       thread_ts: "${{ steps.deployment_message.outputs.ts }}"
+      #       text: "will not proceed to another build on ${{ github.sha }} and ${{ github.ref }}"
