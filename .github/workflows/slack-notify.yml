@@ -28,7 +28,7 @@ jobs:
         run: exit 0
 
       - name: Success message
-        if: ${ success() }
+        if: ${{ success() }}
         uses: slackapi/slack-github-action@v2.0.0
         with:
           method: chat.postMessage
@@ -38,7 +38,7 @@ jobs:
             thread_ts: "${{ steps.deployment_message.outputs.ts }}"
             text: "success..."
       - name: fail message
-        if: ${ failure() }
+        if: ${{ failure() }}
         uses: slackapi/slack-github-action@v2.0.0
         with:
           method: chat.postMessage
