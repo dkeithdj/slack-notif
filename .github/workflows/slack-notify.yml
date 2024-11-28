@@ -50,11 +50,9 @@ jobs:
                   {
                       "mrkdwn_in": ["text"],
                       "color": "#36a64f",
-                      "pretext": "Optional pre-text that appears above the attachment block",
-                      "author_name": "author_name",
-                      "author_link": "http://flickr.com/bobby/",
-                      "author_icon": "https://placeimg.com/16/16/people",
-                      "title": "title",
+                      "author_name": "${{ github.actor }}",
+                      "author_icon": "https://avatars.githubusercontent.com/${{github.actor}}",
+                      "title": "${{ github.event.head_commit.message }}",
                       "title_link": "https://api.slack.com/",
                       "text": "Optional `text` that appears within the attachment",
                       "fields": 
