@@ -73,6 +73,17 @@ jobs:
                               "short": true
                           }
                       ],
+                      "accessory": {
+                              "type": "button",
+                              "text": {
+                                "type": "plain_text",
+                                "text": "Click Me",
+                                "emoji": true
+                              },
+                              "value": "click_me_123",
+                              "url": "https://google.com",
+                              "action_id": "button-action"
+                            }
                       "thumb_url": "http://placekitten.com/g/200/200",
                       "footer": "footer",
                       "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
