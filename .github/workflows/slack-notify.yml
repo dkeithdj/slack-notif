@@ -53,7 +53,7 @@ jobs:
                       "author_name": "${{ github.actor }}",
                       "author_icon": "https://avatars.githubusercontent.com/${{github.actor}}",
                       "title": "${{ github.event.head_commit.message }}",
-                      "title_link": "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.event.head_commit }}",
+                      "title_link": "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}",
                       "text": "Action: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>",
                       "fields":
                       [
