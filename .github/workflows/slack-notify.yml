@@ -63,6 +63,11 @@ jobs:
                               "short": false
                           },
                           {
+                              "title": "",
+                              "value": "",
+                              "short": false
+                          },
+                          {
                               "title": "Action",
                               "value": "<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>",
                               "short": true
