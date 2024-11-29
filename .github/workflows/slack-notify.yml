@@ -45,51 +45,35 @@ jobs:
             channel: C082SRACXL5
             ts: "${{ steps.deployment_message.outputs.ts }}"
             text: "Deployment finished! :rocket:"
-            attachments:
-              [
+            attachments: [
+              {
+                "color": "#36a64f",
+                "blocks": [
                   {
-                      "mrkdwn_in": ["text"],
-                      "color": "#36a64f",
-                      "author_name": "${{ github.actor }}",
-                      "author_icon": "https://avatars.githubusercontent.com/${{github.actor}}",
-                      "title": "${{ github.event.head_commit.message }}",
-                      "title_link": "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}",
-                      "text": "Action: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>",
-                      "fields":
-                      [
-                          {
-                              "title": "Commit",
-                              "value": "<${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ github.event.head_commit.message }}>",
-                              "short": false
-                          },
-                          {
-                              "title": "",
-                              "value": "@nbsp",
-                              "short": false
-                          },
-                          {
-                              "title": "Action",
-                              "value": "<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>",
-                              "short": true
-                          },
-                      ],
-                      "thumb_url": "http://placekitten.com/g/200/200",
-                      "footer": "footer",
-                      "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
-                      "ts": 123456789,
-                      "accessory": {
-                              "type": "button",
-                              "text": {
-                                "type": "plain_text",
-                                "text": "Click Me",
-                                "emoji": true
-                              },
-                              "value": "click_me_123",
-                              "url": "https://google.com",
-                              "action_id": "button-action"
-                            }
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Deployment finished!* :rocket:"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Commit:*\n<${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ github.event.head_commit.message }}>"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Action:*\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>"
+                      }
+                    ]
                   }
-              ]
+                ]
+              }
+            ]
       - name: fail message
         if: ${{ failure() }}
         uses: slackapi/slack-github-action@v2.0.0
