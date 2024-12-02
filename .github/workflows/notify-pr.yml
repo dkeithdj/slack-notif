@@ -24,7 +24,7 @@ jobs:
             channel: C082SRACXL5
             attachments: [
               {
-                "color": "#238636",
+                "color": "${{ github.event.action == 'opened' && '#238636' || '#8957E5' }}",
                 "blocks": [
                   {
                     "type": "section",
