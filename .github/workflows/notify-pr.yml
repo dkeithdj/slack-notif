@@ -40,11 +40,7 @@ jobs:
                     "fields": [
                       {
                         "type": "mrkdwn",
-                        "text": "*Title:* ${{ github.event.pull_request.title }}"
-                      },
-                      {
-                        "type": "mrkdwn",
-                        "text": "*PR Number:* #${{ github.event.pull_request.number }}"
+                        "text": "*${{ github.event.pull_request.title }}* #${{ github.event.pull_request.number }}"
                       },
                       {
                         "type": "mrkdwn",
