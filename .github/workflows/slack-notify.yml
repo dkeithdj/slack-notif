@@ -9,10 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      ACTION: "*Action:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>"
-      COMMIT: "${{ github.event.head_commit.message }}"
-      URL: "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
 
     steps:
       - name: Checkout current repository
@@ -47,7 +43,7 @@ jobs:
                     type: plain_text
                     text: Go to Commit
                     emoji: true
-                  url: ${{ vars.URL }}
+                  url: "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
                   action_id: button-action
       # Install dependencies (Modify this to your project)
       - name: Simulate process
@@ -64,25 +60,25 @@ jobs:
             channel: C082SRACXL5
             ts: "${{ steps.deployment_message.outputs.ts }}"
             attachments:
-              - color: "${{ job.status == 'success' && '#238636' || '#F85149' }}"
-                blocks:
-                  - type: section
-                    fields:
-                      - type: mrkdwn
-                        text: "${{ job.status == 'success' && '*Build finished!* :rocket:' || '*Build Failed!* :red_circle:' }}"
-                  - type: section
-                    fields:
-                      - type: mrkdwn
-                        text: $ACTION
-                  - type: section
-                    text:
-                      type: mrkdwn
-                      text: $COMMIT
-                    accessory:
-                      type: button
-                      text:
-                        type: plain_text
-                        text: Go to Commit
-                        emoji: true
-                      url: $URL
-                      action_id: button-action
+            - color: "${{ job.status == 'success' && '#238636' || '#F85149' }}"
+              blocks:
+              - type: section
+                fields:
+                  - type: mrkdwn
+                    text: "${{ job.status == 'success' && '*Build finished!* :rocket:' || '*Build Failed!* :red_circle:' }}"
+              - type: section
+                fields:
+                - type: mrkdwn
+                  text: "*Action:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>"
+              - type: section
+                text:
+                  type: mrkdwn
+                  text: "${{ github.event.head_commit.message }}"
+                accessory:
+                  type: button
+                  text:
+                    type: plain_text
+                    text: Go to Commit
+                    emoji: true
+                  url: "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
+                  action_id: button-action
