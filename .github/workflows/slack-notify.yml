@@ -20,8 +20,50 @@ jobs:
         with:
           method: chat.postMessage
           token: ${{ secrets.SLACK_TOKEN }}
-          payload-file-path: "./payload-slack.json"
-          payload-templated: true
+          payload: |
+            channel: C082SRACXL5
+            attachments: [
+              {
+                "color": "#D29922",
+                "blocks": [
+                  {
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Building...* :building_construction:"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Action:*\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": "*${{ github.event.head_commit.message }}*"
+                    },
+                    "accessory": {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "Go to Commit",
+                        "emoji": true
+                      },
+                      "url": "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}",
+                      "action_id": "button-action"
+                    }
+                  },
+                ]
+              }
+            ]
       # Install dependencies (Modify this to your project)
       - name: Simulate process
         run: |
