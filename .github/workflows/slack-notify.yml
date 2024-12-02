@@ -57,5 +57,5 @@ jobs:
           method: chat.update
           token: ${{ secrets.SLACK_TOKEN }}
           payload-file-path: ".github/workflows/message/message.yml"
-          # payload: |
-          #   echo ./message/message.yml
+          payload: |
+            ts: "${{ steps.deployment_message.outputs.ts }}"
