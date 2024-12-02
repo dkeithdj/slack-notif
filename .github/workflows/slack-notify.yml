@@ -32,9 +32,7 @@ jobs:
               - type: section
                 fields:
                 - type: mrkdwn
-                  text: |-
-                    *Action:*
-                    <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>
+                  text: "*Action:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>"
               - type: section
                 text:
                   type: mrkdwn
@@ -45,8 +43,7 @@ jobs:
                     type: plain_text
                     text: Go to Commit
                     emoji: true
-                  url: "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha
-                    }}"
+                  url: "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
                   action_id: button-action
       # Install dependencies (Modify this to your project)
       - name: Simulate process
@@ -59,7 +56,7 @@ jobs:
         with:
           method: chat.update
           token: ${{ secrets.SLACK_TOKEN }}
-          payload-file-path: "./message/message.yml"
+          payload-file-path: ".github/workflows/message/message.yml"
           payload-templated: true
           # payload: |
           #   echo ./message/message.yml
