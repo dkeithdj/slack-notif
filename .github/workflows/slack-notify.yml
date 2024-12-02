@@ -33,7 +33,7 @@ jobs:
       - name: Simulate process
         run: |
           sleep 10
-          exit 0
+          exit 1
 
       - name: Success message
         if: ${{ success() }}
@@ -44,7 +44,6 @@ jobs:
           payload: |
             channel: C082SRACXL5
             ts: "${{ steps.deployment_message.outputs.ts }}"
-            text: "Deployment finished! :rocket:"
             attachments: [
               {
                 "color": "#36a64f",
