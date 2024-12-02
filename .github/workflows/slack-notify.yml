@@ -36,18 +36,18 @@ jobs:
               - type: section
                 fields:
                 - type: mrkdwn
-                  text: $ACTION
+                  text: "*Action:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>"
               - type: section
                 text:
                   type: mrkdwn
-                  text: $COMMIT
+                  text: "${{ github.event.head_commit.message }}"
                 accessory:
                   type: button
                   text:
                     type: plain_text
                     text: Go to Commit
                     emoji: true
-                  url: $URL
+                  url: ${{ env.URL }}
                   action_id: button-action
       # Install dependencies (Modify this to your project)
       - name: Simulate process
