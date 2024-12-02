@@ -33,7 +33,7 @@ jobs:
       - name: Simulate process
         run: |
           sleep 10
-          exit 1
+          exit 0
 
       - name: Success message
         if: ${{ success() }}
@@ -46,7 +46,7 @@ jobs:
             ts: "${{ steps.deployment_message.outputs.ts }}"
             attachments: [
               {
-                "color": "#36a64f",
+                "color": "#238636",
                 "blocks": [
                   {
                     "type": "section",
@@ -84,7 +84,7 @@ jobs:
             ts: "${{ steps.deployment_message.outputs.ts }}"
             attachments: [
               {
-                "color": "#f44336",
+                "color": "#F85149",
                 "blocks": [
                   {
                     "type": "section",
