@@ -28,8 +28,7 @@ jobs:
           sleep 10
           exit 0
 
-      - name: Success message
-        if: ${{ success() }}
+      - name: Notify Status
         uses: slackapi/slack-github-action@v2.0.0
         with:
           method: chat.update
@@ -39,14 +38,15 @@ jobs:
             ts: "${{ steps.deployment_message.outputs.ts }}"
             attachments: [
               {
-                "color": "#238636",
+                "color": "${{ job.status == 'success' && '#238636' || '#F85149' }}",
                 "blocks": [
                   {
                     "type": "section",
                     "fields": [
                       {
                         "type": "mrkdwn",
-                        "text": "*Deployment finished!* :rocket:"
+                        "text": "${{ job.status == 'success' && '*Build finished!* :rocket:' || '*Build Failed!* :red_circle:' }}"
+                        
                       }
                     ]
                   },
@@ -79,65 +79,3 @@ jobs:
                 ]
               }
             ]
-      - name: Fail message
-        if: ${{ failure() }}
-        uses: slackapi/slack-github-action@v2.0.0
-        with:
-          method: chat.update
-          token: ${{ secrets.SLACK_TOKEN }}
-          payload: |
-            channel: C082SRACXL5
-            ts: "${{ steps.deployment_message.outputs.ts }}"
-            attachments: [
-              {
-                "color": "#F85149",
-                "blocks": [
-                  {
-                    "type": "section",
-                    "fields": [
-                      {
-                        "type": "mrkdwn",
-                        "text": "*Deployment Failed!* :red_circle:"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "section",
-                    "fields": [
-                      {
-                        "type": "mrkdwn",
-                        "text": "*Action:*\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "section",
-                    "text": {
-                      "type": "mrkdwn",
-                      "text": "*${{ github.event.head_commit.message }}*"
-                    },
-                    "accessory": {
-                      "type": "button",
-                      "text": {
-                        "type": "plain_text",
-                        "text": "Go to Commit",
-                        "emoji": true
-                      },
-                      "url": "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}",
-                      "action_id": "button-action"
-                    }
-                  },
-                ]
-              }
-            ]
-
-      # - name: after fail message
-      #   if: ${{ failure() }}
-      #   uses: slackapi/slack-github-action@v2.0.0
-      #   with:
-      #     method: chat.postMessage
-      #     token: ${{ secrets.SLACK_TOKEN }}
-      #     payload: |
-      #       channel: C082SRACXL5
-      #       thread_ts: "${{ steps.deployment_message.outputs.ts }}"
-      #       text: "will not proceed to another build on ${{ github.sha }} and ${{ github.ref }}"
