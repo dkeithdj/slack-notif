@@ -47,7 +47,7 @@ jobs:
                     type: plain_text
                     text: Go to Commit
                     emoji: true
-                  url: ${{ env.URL }}
+                  url: ${{ vars.URL }}
                   action_id: button-action
       # Install dependencies (Modify this to your project)
       - name: Simulate process
