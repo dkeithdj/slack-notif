@@ -14,15 +14,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Extract Reviewers
-        id: reviewers
-        run: |
-          if [ "${{ github.event.pull_request.requested_reviewers }}" != "[]" ]; then
-            echo "reviewers=$(echo ${{ github.event.pull_request.requested_reviewers }} | jq -r 'map(.login) | join(", ")')" >> $GITHUB_ENV
-          else
-            echo "reviewers=No reviewers assigned" >> $GITHUB_ENV
-          fi
-
       - name: Post a message in a channel
         id: pr_message
         uses: slackapi/slack-github-action@v2.0.0
@@ -52,6 +43,14 @@ jobs:
                         "text": "*Author:* ${{ github.event.pull_request.user.login }}"
                       },
                       {
+                        "type": "context",
+                        "elements": [
+                          "type": "image",
+                          "image_url": "${{ github.event.pull_request.user.avatar_url }}",
+                          "alt_text": "image"
+                        ],
+                      },
+                      {
                         "type": "mrkdwn",
                         "text": "*Title:* ${{ github.event.pull_request.title }}"
                       },
@@ -62,10 +61,6 @@ jobs:
                       {
                         "type": "mrkdwn",
                         "text": "*Link:* <${{ github.event.pull_request.html_url }}|View Pull Request>"
-                      },
-                      {
-                        "type": "mrkdwn",
-                        "text": "*Reviewers:* ${{ env.reviewers }}"
                       }
                     ]
                   }
