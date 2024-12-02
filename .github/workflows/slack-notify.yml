@@ -48,7 +48,7 @@ jobs:
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "*${{ github.event.head_commit.message }}*"
+                      "text": "${{ github.event.head_commit.message }}"
                     },
                     "accessory": {
                       "type": "button",
@@ -105,7 +105,7 @@ jobs:
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "*${{ github.event.head_commit.message }}*"
+                      "text": "${{ github.event.head_commit.message }}"
                     },
                     "accessory": {
                       "type": "button",
