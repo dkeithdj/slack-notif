@@ -1,0 +1,53 @@
+name: Build and Push Outputs to Demo Repo
+
+on:
+  pull_request:
+    types:
+      - opened
+      - closed
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Post a message in a channel
+        id: pr_message
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_TOKEN }}
+          payload: |
+            channel: C082SRACXL5
+            attachments: [
+              {
+                "color": "#238636",
+                "blocks": [
+                  {
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "${{ github.event.action == 'opened' && ':bell: *Pull Request Opened!*' || ':white_check_mark: *Pull Request Closed!*' }}"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "PR"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "PR"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
