@@ -53,10 +53,11 @@ jobs:
 
       - name: Notify Status
         uses: slackapi/slack-github-action@v2.0.0
-        with:
-          method: chat.update
-          token: ${{ secrets.SLACK_TOKEN }}
-          payload-file-path: ".github/workflows/message/message.yml"
-          payload-templated: true
-          # payload: |
-          #   echo ./message/message.yml
+        run: pwd
+        # with:
+        #   method: chat.update
+        #   token: ${{ secrets.SLACK_TOKEN }}
+        #   payload-file-path: ".github/workflows/message/message.yml"
+        #   payload-templated: true
+        # payload: |
+        #   echo ./message/message.yml
