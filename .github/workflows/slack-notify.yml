@@ -60,8 +60,6 @@ jobs:
         with:
           method: chat.update
           token: ${{ secrets.SLACK_TOKEN }}
-          payload-file-path: .github/workflows/message/message.yml
-          payload-templated: true
           payload: |
             channel: C082SRACXL5
             ts: "${{ steps.deployment_message.outputs.ts }}"
