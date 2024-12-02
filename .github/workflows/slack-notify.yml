@@ -59,4 +59,4 @@ jobs:
         with:
           method: chat.update
           token: ${{ secrets.SLACK_TOKEN }}
-          payload: cat ./message.yml
+          payload: cat ./message/message.yml
