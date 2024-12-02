@@ -36,20 +36,25 @@ jobs:
                     ]
                   },
                   {
-                    "type": "section",
-                    "fields": [
+                    "type": "divider"
+                  },
+                  {
+                    "type": "context",
+                    "elements": [
                       {
                         "type": "mrkdwn",
                         "text": "*Author:* ${{ github.event.pull_request.user.login }}"
                       },
                       {
-                        "type": "context",
-                        "elements": [
-                          "type": "image",
-                          "image_url": "${{ github.event.pull_request.user.avatar_url }}",
-                          "alt_text": "image"
-                        ],
-                      },
+                        "type": "image",
+                        "image_url": "${{ github.event.pull_request.user.avatar_url }}",
+                        "alt_text": "image"
+                      }
+                    ],
+                  },
+                  {
+                    "type": "section",
+                    "fields": [
                       {
                         "type": "mrkdwn",
                         "text": "*Title:* ${{ github.event.pull_request.title }}"
