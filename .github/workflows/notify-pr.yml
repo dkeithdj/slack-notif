@@ -31,23 +31,44 @@ jobs:
                     "fields": [
                       {
                         "type": "mrkdwn",
-                        "text": "${{ github.event.action == 'opened' && ':bell: *Pull Request Opened!*' || ':white_check_mark: *Pull Request Closed!*' }}"
+                        "text": "<!channel> ${{ github.event.action == 'opened' && ':bell: *Pull Request Opened!*' || ':white_check_mark: *Pull Request Closed!*' }}"
                       }
                     ]
+                  },
+                  {
+                    "type": "divider"
                   },
                   {
                     "type": "section",
                     "fields": [
                       {
                         "type": "mrkdwn",
-                        "text": "PR"
+                        "text": "*Title:* ${{ github.event.pull_request.title }}"
                       },
                       {
                         "type": "mrkdwn",
-                        "text": "PR"
+                        "text": "*PR Number:* #${{ github.event.pull_request.number }}"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Link:* <${{ github.event.pull_request.html_url }}|View Pull Request>"
                       }
                     ]
-                  }
+                  },
+                  {
+                    "type": "context",
+                    "elements": [
+                      {
+                        "type": "image",
+                        "image_url": "${{ github.event.pull_request.user.avatar_url }}",
+                        "alt_text": "image"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "${{ github.event.pull_request.user.login }}"
+                      }
+                    ],
+                  },
                 ]
               }
             ]

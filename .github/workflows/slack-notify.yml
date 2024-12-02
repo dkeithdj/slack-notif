@@ -52,7 +52,7 @@ jobs:
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "${{github.event.head_commit.message }}"
+                      "text": "*${{github.event.head_commit.message }}*"
                     },
                     "accessory": {
                       "type": "button",
@@ -61,7 +61,6 @@ jobs:
                         "text": "Go to Commit",
                         "emoji": true
                       },
-                      "value": "click_me_123",
                       "url": "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}",
                       "action_id": "button-action"
                     }
@@ -114,7 +113,7 @@ jobs:
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "${{github.event.head_commit.message }}"
+                      "text": "*${{github.event.head_commit.message }}*"
                     },
                     "accessory": {
                       "type": "button",
@@ -123,7 +122,6 @@ jobs:
                         "text": "Go to Commit",
                         "emoji": true
                       },
-                      "value": "click_me_123",
                       "url": "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}",
                       "action_id": "button-action"
                     }
@@ -170,7 +168,7 @@ jobs:
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "${{github.event.head_commit.message }}"
+                      "text": "*${{github.event.head_commit.message }}*"
                     },
                     "accessory": {
                       "type": "button",
@@ -179,7 +177,6 @@ jobs:
                         "text": "Go to Commit",
                         "emoji": true
                       },
-                      "value": "click_me_123",
                       "url": "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}",
                       "action_id": "button-action"
                     }
