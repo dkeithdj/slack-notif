@@ -22,13 +22,35 @@ jobs:
           token: ${{ secrets.SLACK_TOKEN }}
           payload: |
             channel: C082SRACXL5
-            text: "Deployment started :eyes:"
-            attachments:
-              - color: "#dbab09"
-                fields:
-                  - title: "Status"
-                    short: true
-                    value: In Progress
+            attachments: [
+              {
+                "color": "#D29922",
+                "blocks": [
+                  {
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Building...* :building_construction:"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Commit:*\n <${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ github.event.head_commit.message }}>"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Action:*\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
       # Install dependencies (Modify this to your project)
       - name: Simulate process
         run: |
