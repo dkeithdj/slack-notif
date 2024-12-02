@@ -40,10 +40,6 @@ jobs:
                     "fields": [
                       {
                         "type": "mrkdwn",
-                        "text": "*Commit:*\n <${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ github.event.head_commit.message }}>"
-                      },
-                      {
-                        "type": "mrkdwn",
                         "text": "*Action:*\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>"
                       }
                     ]
@@ -52,7 +48,7 @@ jobs:
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "*${{github.event.head_commit.message }}*"
+                      "text": "*${{ github.event.head_commit.message }}*"
                     },
                     "accessory": {
                       "type": "button",
@@ -101,10 +97,6 @@ jobs:
                     "fields": [
                       {
                         "type": "mrkdwn",
-                        "text": "*Commit:*\n<${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|'${{ github.event.head_commit.message }}'>"
-                      },
-                      {
-                        "type": "mrkdwn",
                         "text": "*Action:*\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>"
                       }
                     ]
@@ -113,7 +105,7 @@ jobs:
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "*${{github.event.head_commit.message }}*"
+                      "text": "*${{ github.event.head_commit.message }}*"
                     },
                     "accessory": {
                       "type": "button",
@@ -156,10 +148,6 @@ jobs:
                     "fields": [
                       {
                         "type": "mrkdwn",
-                        "text": "*Commit:*\n<${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ github.event.head_commit.message }}>"
-                      },
-                      {
-                        "type": "mrkdwn",
                         "text": "*Action:*\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>"
                       }
                     ]
@@ -168,7 +156,7 @@ jobs:
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "*${{github.event.head_commit.message }}*"
+                      "text": "*${{ github.event.head_commit.message }}*"
                     },
                     "accessory": {
                       "type": "button",

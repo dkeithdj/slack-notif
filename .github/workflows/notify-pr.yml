@@ -31,12 +31,9 @@ jobs:
                     "fields": [
                       {
                         "type": "mrkdwn",
-                        "text": "<!channel> ${{ github.event.action == 'opened' && ':bell: *Pull Request Opened!*' || ':white_check_mark: *Pull Request Closed!*' }}"
+                        "text": "${{ github.event.action == 'opened' && ':bell: *Pull Request Opened!* <!channel>' || ':white_check_mark: *Pull Request Closed!*' }}"
                       }
                     ]
-                  },
-                  {
-                    "type": "divider"
                   },
                   {
                     "type": "section",
@@ -65,7 +62,7 @@ jobs:
                       },
                       {
                         "type": "mrkdwn",
-                        "text": "${{ github.event.pull_request.user.login }}"
+                        "text": "${{ github.event.pull_request.user.login }} | ${{ github.repository }}"
                       }
                     ],
                   },
