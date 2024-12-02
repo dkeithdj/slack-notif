@@ -47,7 +47,25 @@ jobs:
                         "text": "*Action:*\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>"
                       }
                     ]
-                  }
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": "${{github.event.head_commit.message }}"
+                    },
+                    "accessory": {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "Go to Commit",
+                        "emoji": true
+                      },
+                      "value": "click_me_123",
+                      "url": "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}",
+                      "action_id": "button-action"
+                    }
+                  },
                 ]
               }
             ]
@@ -91,7 +109,25 @@ jobs:
                         "text": "*Action:*\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>"
                       }
                     ]
-                  }
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": "${{github.event.head_commit.message }}"
+                    },
+                    "accessory": {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "Go to Commit",
+                        "emoji": true
+                      },
+                      "value": "click_me_123",
+                      "url": "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}",
+                      "action_id": "button-action"
+                    }
+                  },
                 ]
               }
             ]
@@ -129,7 +165,25 @@ jobs:
                         "text": "*Action:*\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>"
                       }
                     ]
-                  }
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": "${{github.event.head_commit.message }}"
+                    },
+                    "accessory": {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "Go to Commit",
+                        "emoji": true
+                      },
+                      "value": "click_me_123",
+                      "url": "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}",
+                      "action_id": "button-action"
+                    }
+                  },
                 ]
               }
             ]
