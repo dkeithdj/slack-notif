@@ -60,5 +60,6 @@ jobs:
           method: chat.update
           token: ${{ secrets.SLACK_TOKEN }}
           payload-file-path: "./message/message.yml"
+          payload-templated: true
           # payload: |
           #   echo ./message/message.yml
