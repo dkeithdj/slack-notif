@@ -74,7 +74,7 @@ jobs:
                 ]
               }
             ]
-      - name: fail message
+      - name: Fail message
         if: ${{ failure() }}
         uses: slackapi/slack-github-action@v2.0.0
         with:
@@ -83,13 +83,35 @@ jobs:
           payload: |
             channel: C082SRACXL5
             ts: "${{ steps.deployment_message.outputs.ts }}"
-            text: "Deployment failed! :red_circle:"
-            attachments:
-              - color: "#f44336"
-                fields:
-                  - title: "Status"
-                    short: true
-                    value: "Failed"
+            attachments: [
+              {
+                "color": "#f44336",
+                "blocks": [
+                  {
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Deployment Failed!* :red_circle:"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Commit:*\n<${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ github.event.head_commit.message }}>"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Action:*\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{github.run_id}}>"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
 
       # - name: after fail message
       #   if: ${{ failure() }}
