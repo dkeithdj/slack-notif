@@ -1,0 +1,34 @@
+name: Push Backend
+
+on:
+  workflow_run:
+    workflows: ["Django Tests"]
+    types:
+      - completed
+
+jobs:
+  build-staging:
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: Staging
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: this is running staging
+        run: |
+          echo running staging
+
+  build-production:
+    if: github.event.workflow_run.conclusion == 'success' && (startsWith(github.event.workflow_run.head_branch, 'release/') || startsWith(github.event.workflow_run.head_branch, 'hotfix/'))
+    runs-on: ubuntu-latest
+    environment:
+      name: Production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: this is running production
+        run: |
+          echo running production
